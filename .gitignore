@@ -1,5 +1,5 @@
 # ###### MAVEN #######
-.idea/*
+**/.idea/*
 **/target/**
 *.iml
 
