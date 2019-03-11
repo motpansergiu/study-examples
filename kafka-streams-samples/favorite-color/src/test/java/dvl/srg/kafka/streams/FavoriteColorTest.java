@@ -18,7 +18,7 @@ import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AppTest {
+class FavoriteColorTest {
 
     TopologyTestDriver testDriver;
 
@@ -26,6 +26,7 @@ class AppTest {
 
     ConsumerRecordFactory<String, String> recordFactory =
             new ConsumerRecordFactory<>(stringSerializer, stringSerializer);
+
 
     @BeforeEach
     public void setUpTopologyTestDriver(){
@@ -35,8 +36,8 @@ class AppTest {
         config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
-        App wordCountApp = new App();
-        Topology topology = wordCountApp.createTopology();
+        FavoriteColor favoriteColor = new FavoriteColor();
+        Topology topology = favoriteColor.createTopology();
         testDriver = new TopologyTestDriver(topology, config);
     }
 
@@ -46,37 +47,33 @@ class AppTest {
     }
 
     public void pushNewInputRecord(String value){
-        testDriver.pipeInput(recordFactory.create(App.WORD_COUNT_INPUTT_TOPIC, null, value));
+        testDriver.pipeInput(recordFactory.create(FavoriteColor.INPUT_TOPIC, null, value));
     }
 
     public ProducerRecord<String, Long> readOutput(){
-        return testDriver.readOutput(App.WORD_COUNT_OUTPUTT_TOPIC, new StringDeserializer(), new LongDeserializer());
+        return testDriver.readOutput(FavoriteColor.OUTPUT_TOPIC, new StringDeserializer(), new LongDeserializer());
     }
 
     @Test
-    public void makeSureCountsAreCorrect(){
-        String firstExample = "testing Kafka Streams";
-        pushNewInputRecord(firstExample);
-        OutputVerifier.compareKeyValue(readOutput(), "testing", 1L);
-        OutputVerifier.compareKeyValue(readOutput(), "kafka", 1L);
-        OutputVerifier.compareKeyValue(readOutput(), "streams", 1L);
+    public void whenSendAnInvalidColorExpectNoResult() {
+        String dateInput = "john,black";
+
+        pushNewInputRecord(dateInput);
+
         assertNull(readOutput());
-
-        String secondExample = "testing Kafka again";
-        pushNewInputRecord(secondExample);
-        OutputVerifier.compareKeyValue(readOutput(), "testing", 2L);
-        OutputVerifier.compareKeyValue(readOutput(), "kafka", 2L);
-        OutputVerifier.compareKeyValue(readOutput(), "again", 1L);
-
     }
 
     @Test
-    public void makeSureWordsBecomeLowercase(){
-        String upperCaseString = "KAFKA kafka Kafka";
-        pushNewInputRecord(upperCaseString);
-        OutputVerifier.compareKeyValue(readOutput(), "kafka", 1L);
-        OutputVerifier.compareKeyValue(readOutput(), "kafka", 2L);
-        OutputVerifier.compareKeyValue(readOutput(), "kafka", 3L);
+    public void whenSendAnUpdateExpectGreen0AndRed1() {
+        String dateInput1 = "john,green";
+        String dateInput2 = "john,red";
 
+        pushNewInputRecord(dateInput1);
+        pushNewInputRecord(dateInput2);
+
+        OutputVerifier.compareKeyValue(readOutput(), "green", 1L);
+        OutputVerifier.compareKeyValue(readOutput(), "red", 1L);
+        assertNull(readOutput());
     }
+
 }

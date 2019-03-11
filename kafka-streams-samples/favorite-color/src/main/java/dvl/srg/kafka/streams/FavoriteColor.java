@@ -3,10 +3,7 @@ package dvl.srg.kafka.streams;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.KeyValue;
-import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
 
 import java.util.Arrays;
@@ -28,20 +25,31 @@ public class FavoriteColor {
         colorCache.add("blue");
     }
 
-
-
     public static void main(String[] args) {
         // Connection properties
 
+        Properties config = getProperties();
+
+        FavoriteColor favoriteColor = new FavoriteColor();
+
+        KafkaStreams streams = new KafkaStreams(favoriteColor.createTopology(), config);
+        streams.start();
+        Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
+
+    }
+
+    private static Properties getProperties() {
         Properties config = new Properties();
         config.put(StreamsConfig.APPLICATION_ID_CONFIG, "favorite-color");
         config.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        return config;
+    }
 
+    public Topology createTopology() {
         StreamsBuilder builder = new StreamsBuilder();
-
 
         KStream<String, String> stream = builder.stream(INPUT_TOPIC);
 
@@ -62,10 +70,6 @@ public class FavoriteColor {
                 .count();
 
         count.toStream().to(OUTPUT_TOPIC, Produced.with(stringSerde, longSerde));
-
-        KafkaStreams streams = new KafkaStreams(builder.build(), config);
-        streams.start();
-        Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
-
+        return builder.build();
     }
 }
