@@ -23,3 +23,12 @@ exceptions are allowed to be thrown.
 
 ## virtual method invocation
 Java looks for an overridden method rather than necessarily using the one in the class that the compiler says we have.
+
+## Annotation
+An annotation is extra information about the program, and it is a type of metadata.
+
+However, when you see @ Override show up on the exam, you must check carefully that
+the method is doing one of three things:
+- Implementing a method from an interface
+- Overriding a superclass method of a class shown in the example
+- Overriding a superclass method of a class shown in the example
