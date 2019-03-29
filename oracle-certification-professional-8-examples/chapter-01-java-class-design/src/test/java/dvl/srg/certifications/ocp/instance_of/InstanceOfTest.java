@@ -1,5 +1,8 @@
 package dvl.srg.certifications.ocp.instance_of;
 
+import dvl.srg.certifications.ocp.domain.animal.Elephant;
+import dvl.srg.certifications.ocp.domain.animal.HeavyAnimal;
+import dvl.srg.certifications.ocp.domain.animal.Hippo;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Predicate;

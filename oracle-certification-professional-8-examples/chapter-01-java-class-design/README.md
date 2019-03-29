@@ -1,4 +1,5 @@
 # Notes 
+## Overloading and Overriding
 ####When multiple overloaded methods are present, Java looks for the closest match first. It
 tries to find the following:
 * Exact match by type
@@ -15,7 +16,10 @@ return types.
 exceptions are allowed to be thrown.
 #####The methods must not be static . (If they are, the method is hidden and not overridden.)
 
-# instanceof operator notes
+## instanceof operator notes
 - it fails when is applied to a class which is not part of hierarchy
 - null is not instanceof Object
 - it's not fail when is applied to an interface
+
+## virtual method invocation
+Java looks for an overridden method rather than necessarily using the one in the class that the compiler says we have.
