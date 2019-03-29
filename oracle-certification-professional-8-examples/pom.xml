@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dvl.srg.certifications</groupId>
-    <artifactId>oracle-certification-professional-8-examples</artifactId>
+    <artifactId>oracle-certification-professional-8</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
