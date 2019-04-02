@@ -65,3 +65,20 @@ of the variables to determine the hash code.
 - If equals() returns false when called with two objects, calling hashCode() on each of
 those objects does not have to return a different result. This means hashCode() results
 do not need to be unique when called on unequal objects
+
+## A nested class is a class that is defined within another class. A nested class that is not
+static is called an inner class. There are four of types of nested classes:
+- A member inner class is a class defined at the same level as instance variables. It is not
+static. Often, this is just referred to as an inner class without explicitly saying the type.
+- A local inner class is defined within a method.
+- An anonymous inner class is a special case of a local inner class that does not have a
+name.
+- A static nested class is a static class that is defined at the same level as static
+variables.
+
+####Member Inner Classes
+- Can be declared public, private, or protected or use default access
+- Can extend any class and implement interfaces
+- Can be abstract or final
+- Cannot declare static fields or methods
+- Can access members of the outer class including private members
