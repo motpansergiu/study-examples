@@ -73,7 +73,6 @@
         </plugins>
     </build>
 
-
     <properties>
         <avro.version>1.8.2</avro.version>
     </properties>

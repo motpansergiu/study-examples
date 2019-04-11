@@ -1,0 +1,12 @@
+{
+    "type" : "record",
+    "namespace" : "com.example",
+    "name" : "CustomerComposedV1",
+    "doc" : "Avro schema for Customer version 1",
+    "fields" : [
+        { "name": "first_name", "type" : "string" , "doc" : "First Name of Customer" },
+        { "name": "last_name", "type" : "string" , "doc" : "Last Name of Customer" },
+        { "name": "address", "type" : "com.example.AddressV1" , "doc" : "Field indication the customer adress" },
+        { "name": "automed_email", "type" : "boolean" , "default" : true, "doc" : "Field indication if the customer want receive emails" }
+    ]
+}
