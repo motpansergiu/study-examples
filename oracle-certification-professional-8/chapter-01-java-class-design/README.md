@@ -82,3 +82,14 @@ variables.
 - Can be abstract or final
 - Cannot declare static fields or methods
 - Can access members of the outer class including private members
+
+####Local Inner Classes
+- They do not have an access specifier.
+- They cannot be declared static and cannot declare static fields or methods.
+- They have access to all fields and methods of the enclosing class.
+- They do not have access to local variables of a method unless those variables are final or effectively final. More on this shortly.
+
+####Static Nested Classes
+- The nesting creates a namespace because the enclosing class name must be used to refer to it.
+- It can be made private or use one of the other access modifiers to encapsulate it.
+- The enclosing class can refer to the fields and methods of the static nested class.
