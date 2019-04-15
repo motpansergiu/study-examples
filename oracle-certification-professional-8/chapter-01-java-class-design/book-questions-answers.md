@@ -23,5 +23,13 @@ Book 1 (Selikof and Boyearski)
 21. A, B, C, E -> (ONLY E) Partially correct -> A, C, E
 
 Book - 2 (Ganesh, Kiran, Sharma)
-1.
-2.
+1. B
+2. C
+3. C
+4. A
+5. B WRONG -> A
+6. D
+7. B
+8. A, B
+9. C
+10. A
