@@ -1,4 +1,4 @@
-package book.chapter.questions.selikof_and_boyearski;
+package book.review.questions;
 
 public class Question21 {
 

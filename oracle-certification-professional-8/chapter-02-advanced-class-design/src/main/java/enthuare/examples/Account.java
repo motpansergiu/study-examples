@@ -8,7 +8,9 @@ public interface Account {
 }
 
 interface PremiumAccount extends Account {
-    String getID();
+    default String getID() {
+        return Account.super.getID();
+    }
 }
 
 class BankAccount implements PremiumAccount {
@@ -16,8 +18,4 @@ class BankAccount implements PremiumAccount {
 
     }
 
-    @Override
-    public String getID() {
-        return null;
-    }
 }
