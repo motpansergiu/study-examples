@@ -2,11 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>kafka-study-examples</artifactId>
+        <groupId>dvl.semotpan.kafka</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dvl.srg.avro</groupId>
     <artifactId>kafka-avro-java-study</artifactId>
-    <version>1.0-SNAPSHOT</version>
+
 
     <dependencies>
         <dependency>
@@ -21,11 +25,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
             </plugin>
 
             <plugin>
@@ -40,10 +39,16 @@
                             <goal>protocol</goal>
                             <goal>idl-protocol</goal>
                         </goals>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/resources</sourceDirectory>
+                            <imports>
+                                <import>${project.basedir}/src/main/resources/avro/address-v1.avsc</import>
+                                <import>${project.basedir}/src/main/resources/avro/customer-composed-v1.avsc</import>
+                            </imports>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
-                    <sourceDirectory>${project.basedir}/src/main/resources</sourceDirectory>
                     <stringType>String</stringType>
                     <createSetters>false</createSetters>
                     <enableDecimalLogicalType>true</enableDecimalLogicalType>
@@ -76,4 +81,5 @@
     <properties>
         <avro.version>1.8.2</avro.version>
     </properties>
+
 </project>

@@ -1,4 +1,4 @@
-package dvl.srg.avro.genericrecord;
+package dvl.semotpan.avro;
 
 import org.apache.avro.Schema;
 import org.apache.avro.file.DataFileReader;
