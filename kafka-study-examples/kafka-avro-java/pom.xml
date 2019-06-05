@@ -9,8 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>kafka-avro-java-study</artifactId>
-
+    <artifactId>kafka-avro-java</artifactId>
 
     <dependencies>
         <dependency>
@@ -41,10 +40,6 @@
                         </goals>
                         <configuration>
                             <sourceDirectory>${project.basedir}/src/main/resources</sourceDirectory>
-                            <imports>
-                                <import>${project.basedir}/src/main/resources/avro/address-v1.avsc</import>
-                                <import>${project.basedir}/src/main/resources/avro/customer-composed-v1.avsc</import>
-                            </imports>
                         </configuration>
                     </execution>
                 </executions>
@@ -79,7 +74,7 @@
     </build>
 
     <properties>
-        <avro.version>1.8.2</avro.version>
+        <avro.version>1.9.0</avro.version>
     </properties>
 
 </project>

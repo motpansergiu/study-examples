@@ -6,7 +6,16 @@
     "fields" : [
         { "name": "first_name", "type" : "string" , "doc" : "First Name of Customer" },
         { "name": "last_name", "type" : "string" , "doc" : "Last Name of Customer" },
-        { "name": "address", "type" : "AddressV1"},
+        { "name": "address", "type" : {
+                                          "type" : "record",
+                                          "name" : "AddressV1",
+                                          "fields" : [
+                                              { "name": "country", "type" : "string" , "doc" : "First Name of Customer" },
+                                              { "name": "city", "type" : "string" , "doc" : "Last Name of Customer" },
+                                              { "name": "street", "type" : "string" , "doc" : "Age of Customer" }
+                                          ]
+                                      }
+        },
         { "name": "automed_email", "type" : "boolean" , "default" : true, "doc" : "Field indication if the customer want receive emails" }
     ]
 }
