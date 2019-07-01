@@ -11,23 +11,19 @@
     <modules>
         <module>chapter-01-java-class-design</module>
         <module>chapter-02-advanced-class-design</module>
+        <module>chapter-03-generics-and-collections</module>
     </modules>
 
     <properties>
         <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-        <junit-jupiter-engine.version>5.3.2</junit-jupiter-engine.version>
-        <junit-jupiter-api.version>5.3.2</junit-jupiter-api.version>
+        <junit-jupiter-engine.version>5.1.0</junit-jupiter-engine.version>
+        <junit-jupiter-api.version>5.1.0</junit-jupiter-api.version>
         <lombok.version>1.18.4</lombok.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit-jupiter-api.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
