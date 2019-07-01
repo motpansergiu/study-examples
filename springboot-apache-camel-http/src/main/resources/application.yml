@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+camel:
+  springboot:
+    # The Camel context name
+    name: FakeRest
+
+  component:
+    servlet:
+      mapping:
+        contextPath: /fake/*
+
+# disable all management enpoints except health
+endpoints:
+  enabled: false
+  health:
+    enabled: true
+
+# The application configuration properties
+quickstart:
+  generateOrderPeriod: 10s
+  processOrderPeriod: 30s
